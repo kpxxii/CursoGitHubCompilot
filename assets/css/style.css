@@ -1,0 +1,56 @@
+/* Reset y estilos base */
+* { box-sizing: border-box; }
+html,body{ margin:0; padding:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; background:#fff; }
+.container{ max-width:1100px; margin:0 auto; padding:1rem; }
+
+/* Colores */
+:root{ --purple:#682444; --white:#ffffff; --muted:#6b6b6b; }
+
+/* Header fijo */
+.site-header{ position:fixed; top:0; left:0; right:0; background:var(--white); border-bottom:1px solid #eee; z-index:1000; }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.75rem 1rem; }
+.brand{ font-weight:700; color:var(--purple); text-decoration:none; font-size:1.1rem; }
+.main-nav{ display:flex; gap:0.75rem; }
+.main-nav a{ color:#333; text-decoration:none; padding:0.35rem 0.5rem; }
+.cta{ background:var(--purple); color:var(--white); padding:0.45rem 0.75rem; text-decoration:none; border-radius:6px; }
+
+/* Hero */
+.hero{ padding:7rem 0 4rem; background:linear-gradient(180deg, rgba(104,36,68,0.95), rgba(104,36,68,0.9)); color:var(--white); }
+.hero-inner{ text-align:left; }
+.hero h1{ margin:0 0 0.5rem; font-size:2rem; }
+.lead{ margin:0 0 1rem; opacity:0.95; }
+.hero-ctas{ display:flex; gap:0.75rem; flex-wrap:wrap; }
+.btn{ display:inline-block; padding:0.6rem 0.9rem; border-radius:6px; text-decoration:none; }
+.btn-primary{ background:var(--white); color:var(--purple); font-weight:600; }
+.btn-outline{ border:2px solid var(--white); color:var(--white); background:transparent; }
+
+/* Sections */
+.section{ padding:3.5rem 0; }
+.section.alt{ background:#f9f9fb; }
+.section h2{ color:var(--purple); margin-top:0; }
+.cards{ display:flex; gap:1rem; margin-top:1rem; }
+.card{ background:var(--white); padding:1rem; border-radius:8px; flex:1; box-shadow:0 1px 3px rgba(0,0,0,0.05); }
+.split{ display:flex; gap:2rem; align-items:flex-start; }
+.split > div{ flex:1; }
+
+/* Contact form */
+.contact-form{ max-width:600px; display:grid; gap:0.5rem; }
+.contact-form input, .contact-form textarea{ padding:0.5rem; border:1px solid #ddd; border-radius:6px; }
+
+/* Footer */
+.site-footer{ background:var(--purple); color:var(--white); padding:1.5rem 0; margin-top:2rem; }
+.footer-inner{ display:flex; gap:2rem; align-items:center; justify-content:space-between; }
+.site-footer a{ color:rgba(255,255,255,0.9); text-decoration:none; margin-left:0.75rem; }
+.footer-brand p{ margin:0.25rem 0 0; opacity:0.95; }
+
+/* Responsive */
+@media (max-width:800px){
+  .main-nav{ display:none; }
+  .hero h1{ font-size:1.5rem; }
+  .cards{ flex-direction:column; }
+  .split{ flex-direction:column; }
+  .footer-inner{ flex-direction:column; align-items:flex-start; }
+}
+
+/* Ajuste para que el contenido no quede bajo el header fijo */
+main{ padding-top:70px; }

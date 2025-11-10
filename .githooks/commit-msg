@@ -1,0 +1,23 @@
+#!/bin/sh
+# Hook simple para validar que el mensaje de commit esté en español.
+# Reglas (simples): aceptar si el mensaje contiene tildes/ñ o alguna palabra clave en español.
+
+MSG_FILE="$1"
+MSG="$(cat "$MSG_FILE")"
+
+# Lista simple de palabras comunes en mensajes en español (regex alternation)
+KEYWORDS="agregar|añadir|actualizar|actualización|corregir|crear|eliminar|arreglar|arreglado|documentación|mejorar|ajuste|ajustes|implementación|migración|publicar|publicación|merge|revertir|revertido|fix"
+
+# Si contiene alguna vocal acentuada o ñ, permitimos
+echo "$MSG" | grep -E "[áéíóúÁÉÍÓÚñÑ]" >/dev/null 2>&1 && exit 0
+
+# Si contiene alguna palabra clave en español, permitimos
+echo "$MSG" | grep -Ei "$KEYWORDS" >/dev/null 2>&1 && exit 0
+
+# Si llega aquí, rechazamos el commit
+cat <<EOF >&2
+ERROR: El mensaje de commit debe estar en español.
+Sugerencia: usa verbos como "agregar", "actualizar", "corregir", "documentación" o incluye tildes/ñ.
+Ejemplo: "Agregar documentación de la landing" o "Actualizar archivo README"
+EOF
+exit 1
